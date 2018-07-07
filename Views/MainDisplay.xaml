@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ToDoList.Views.MainDisplay">
+    
+	<ContentPage.Content>
+       
+            <Grid x:Name="MainDisplayGrid" Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblSplashMessage" 
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="24" FontFamily="Arial" 
+                        Text="TODO List!" 
+                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+
+                
+                <Entry x:Name="txtItemName" Grid.Row="1" Grid.Column="0" />
+            
+                <Button x:Name="btnAddItem" Grid.Row="1" Grid.Column="1"
+                        HorizontalOptions="End" Text="Add Item" Clicked="AddItem" 
+                        BackgroundColor="Teal" TextColor="White" />
+
+                <ListView x:Name="ListViewToDo" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="OnDelete" Text="Delete" CommandParameter="{Binding Id}" IsDestructive="true" />
+                                </ViewCell.ContextActions>
+                                <StackLayout Padding="15,0">
+                                    <Label Text="{Binding TaskName}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button x:Name="btnClearItems" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                        HorizontalOptions="Center" Text="Clear All items" Clicked="ClearAllItems" IsVisible="false" />
+            
+            </Grid>
+
+	</ContentPage.Content>
+</ContentPage>
