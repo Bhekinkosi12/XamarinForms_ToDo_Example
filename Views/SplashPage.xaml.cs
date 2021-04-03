@@ -16,7 +16,7 @@ namespace ToDoList.Views
         }
 
         public async void Continue(){
-            await Task.Delay(3000);
+            
             await Navigation.PushAsync(new MainDisplay());
         }
     }
